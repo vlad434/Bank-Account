@@ -1,12 +1,37 @@
-# React + Vite
+🏦 # Bank Account
+Bank Account is a project built with the purpose of learning and deepening my understanding of Redux and Redux Toolkit. The app simulates basic bank account operations (such as depositing, withdrawing, taking a loan and resetting balance) and is structured in a modular, scalable way to apply best practices in state management with React.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🎯 ## Goals
+Understand the core concepts of Redux
 
-Currently, two official plugins are available:
+Learn how to simplify state management using Redux Toolkit
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Practice writing reducers, actions, and slices
 
-## Expanding the ESLint configuration
+Keep business logic separated from UI components
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Get hands-on experience with selectors and middleware
+
+Async operations ( using thunks )
+
+🔧 ## Tech Stack
+Vite
+
+React
+
+Redux
+
+Redux Toolkit
+
+JavaScript ES6
+
+🚀 ## Features
+Deposit money into the account
+
+Withdraw money from the account
+
+Request a loan
+
+Reset the account balance
+
+Display current balance
