@@ -2,17 +2,18 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createCustomer } from "./customerSlice";
 import LabeledInput from "../../components/LabeledInput";
+import type { AppDispatch } from "../../store";
 
-function Customer() {
+const Customer = () => {
   const [fullName, setFullName] = useState("");
   const [nationalId, setNationalId] = useState("");
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
-  function handleClick() {
+  const handleClick = () => {
     if (!fullName || !nationalId) return;
     dispatch(createCustomer(fullName, nationalId));
-  }
+  };
 
   return (
     <div>
@@ -21,7 +22,9 @@ function Customer() {
         <LabeledInput
           label={"Customer full name"}
           inputValue={fullName}
-          onChange={(e) => setFullName(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setFullName(e.target.value)
+          }
           placeholder={"Enter customer name"}
         />
 
@@ -29,7 +32,9 @@ function Customer() {
           label={"National ID"}
           inputType={"number"}
           inputValue={nationalId}
-          onChange={(e) => setNationalId(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setNationalId(e.target.value)
+          }
           placeholder={"Enter customer national ID"}
         />
 
@@ -37,6 +42,6 @@ function Customer() {
       </div>
     </div>
   );
-}
+};
 
 export default Customer;

@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import type { RootState, AppDispatch } from "../store";
 import {
   requestLoan,
   setLoanAmount,
@@ -6,10 +7,10 @@ import {
 } from "../features/accounts/accountSlice";
 import LabeledInput from "./LabeledInput";
 
-function LoanForm() {
-  const dispatch = useDispatch();
+const LoanForm = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const { loanAmount, loanPurposeInput } = useSelector(
-    (state) => state.account
+    (state: RootState) => state.account
   );
 
   const handleRequestLoan = () => {
@@ -23,18 +24,22 @@ function LoanForm() {
         label="Loan amount"
         inputType="number"
         inputValue={loanAmount}
-        onChange={(e) => dispatch(setLoanAmount(e.target.value))}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          dispatch(setLoanAmount(e.target.value))
+        }
         placeholder="Loan amount"
       />
       <LabeledInput
         label="Loan purpose"
         inputValue={loanPurposeInput}
-        onChange={(e) => dispatch(setLoanPurposeInput(e.target.value))}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          dispatch(setLoanPurposeInput(e.target.value))
+        }
         placeholder="Loan purpose"
       />
       <button onClick={handleRequestLoan}>Request loan</button>
     </div>
   );
-}
+};
 
 export default LoanForm;

@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import type { RootState, AppDispatch } from "../store";
 import {
   deposit,
   setDepositAmount,
@@ -7,10 +8,10 @@ import {
 import LabeledInput from "./LabeledInput";
 import SelectInput from "./SelectInput";
 
-function DepositForm() {
-  const dispatch = useDispatch();
+const DepositForm = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const { depositAmount, currency, isLoading } = useSelector(
-    (state) => state.account
+    (state: RootState) => state.account
   );
 
   const handleDeposit = () => {
@@ -24,17 +25,21 @@ function DepositForm() {
         label="Deposit"
         inputType="number"
         inputValue={depositAmount}
-        onChange={(e) => dispatch(setDepositAmount(e.target.value))}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          dispatch(setDepositAmount(e.target.value))
+        }
       />
       <SelectInput
         value={currency}
-        onChange={(e) => dispatch(setCurrency(e.target.value))}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          dispatch(setCurrency(e.target.value))
+        }
       />
       <button onClick={handleDeposit} disabled={isLoading}>
         {isLoading ? "Converting..." : `Deposit $${depositAmount}`}
       </button>
     </div>
   );
-}
+};
 
 export default DepositForm;

@@ -3,9 +3,10 @@ import Customer from "./features/customers/Customer";
 import AccountOperations from "./features/accounts/AccountOperations";
 import BalanceDisplay from "./features/accounts/BalanceDisplay";
 import { useSelector } from "react-redux";
+import type { RootState } from "./store";
 
-function App() {
-  const fullName = useSelector((store) => store.customer.fullName);
+const App = () => {
+  const fullName = useSelector((store: RootState) => store.customer.fullName);
   return (
     <div>
       <h1>🏦 The React-Redux Bank ⚛️</h1>
@@ -20,6 +21,6 @@ function App() {
       )}
     </div>
   );
-}
+};
 
 export default App;

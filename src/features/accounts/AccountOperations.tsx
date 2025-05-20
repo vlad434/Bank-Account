@@ -3,7 +3,7 @@ import WithdrawForm from "../../components/WithdrawForm";
 import LoanForm from "../../components/LoanForm";
 import PayLoanSection from "../../components/PayLoanSection";
 
-function AccountOperations() {
+const AccountOperations = () => {
   return (
     <div>
       <h2>Your account operations</h2>
@@ -15,6 +15,6 @@ function AccountOperations() {
       </div>
     </div>
   );
-}
+};
 
 export default AccountOperations;

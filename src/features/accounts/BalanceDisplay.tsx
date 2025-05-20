@@ -1,17 +1,18 @@
 import { connect } from "react-redux";
+import type { RootState } from "../../store";
 
-function formatCurrency(value) {
+const formatCurrency = (value: number) => {
   return new Intl.NumberFormat("en", {
     style: "currency",
     currency: "USD",
   }).format(value);
-}
+};
 
 function BalanceDisplay({ balance }) {
   return <div className="balance">{formatCurrency(balance)}</div>;
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: RootState) {
   return {
     balance: state.account.balance,
   };

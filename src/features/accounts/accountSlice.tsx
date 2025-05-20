@@ -60,27 +60,27 @@ export default function accountReducer(state = initialStateAccount, action) {
   }
 }
 
-export function setDepositAmount(amount) {
+const setDepositAmount = (amount) => {
   return { type: "account/setDepositAmount", payload: amount };
-}
+};
 
-export function setWithdrawalAmount(amount) {
+const setWithdrawalAmount = (amount) => {
   return { type: "account/setWithdrawalAmount", payload: amount };
-}
+};
 
-export function setLoanAmount(amount) {
+const setLoanAmount = (amount) => {
   return { type: "account/setLoanAmount", payload: amount };
-}
+};
 
-export function setLoanPurposeInput(purpose) {
+const setLoanPurposeInput = (purpose) => {
   return { type: "account/setLoanPurposeInput", payload: purpose };
-}
+};
 
-export function setCurrency(currency) {
+const setCurrency = (currency) => {
   return { type: "account/setCurrency", payload: currency };
-}
+};
 
-export function deposit(amount, currency) {
+const deposit = (amount, currency) => {
   if (currency === "USD") return { type: "account/deposit", payload: amount };
 
   return async function (dispatch) {
@@ -92,19 +92,31 @@ export function deposit(amount, currency) {
     const converted = data.rates.USD;
     dispatch({ type: "account/deposit", payload: converted });
   };
-}
+};
 
-export function withdraw(amount) {
+const withdraw = (amount) => {
   return { type: "account/withdraw", payload: amount };
-}
+};
 
-export function requestLoan(amount, purpose) {
+const requestLoan = (amount, purpose) => {
   return {
     type: "account/requestLoan",
     payload: { amount, purpose },
   };
-}
+};
 
-export function payLoan() {
+const payLoan = () => {
   return { type: "account/payLoan" };
-}
+};
+
+export {
+  setDepositAmount,
+  setWithdrawalAmount,
+  setLoanAmount,
+  setLoanPurposeInput,
+  setCurrency,
+  deposit,
+  withdraw,
+  requestLoan,
+  payLoan,
+};

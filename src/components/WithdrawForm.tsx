@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
+import type { RootState, AppDispatch } from "../store";
 import {
   withdraw,
   setWithdrawalAmount,
 } from "../features/accounts/accountSlice";
 import LabeledInput from "./LabeledInput";
 
-export default function WithdrawForm() {
-  const dispatch = useDispatch();
-  const { withdrawalAmount } = useSelector((state) => state.account);
+const WithdrawForm = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { withdrawalAmount } = useSelector((state: RootState) => state.account);
 
   const handleWithdrawal = () => {
     if (!withdrawalAmount) return;
@@ -20,9 +21,13 @@ export default function WithdrawForm() {
         label="Withdraw"
         inputType="number"
         inputValue={withdrawalAmount}
-        onChange={(e) => dispatch(setWithdrawalAmount(e.target.value))}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          dispatch(setWithdrawalAmount(e.target.value))
+        }
       />
       <button onClick={handleWithdrawal}>Withdraw {withdrawalAmount}</button>
     </div>
   );
-}
+};
+
+export default WithdrawForm;

@@ -1,14 +1,15 @@
-export default function LabeledInput({
+const LabeledInput = ({
   label = "",
   inputType = "text",
   inputValue,
   onChange,
   placeholder = "",
-}) {
+}) => {
   return (
     <div>
-      {label && <label>{label}</label>}
+      {label && <label htmlFor={"id_" + label}>{label}</label>}
       <input
+        id={"id_" + label}
         type={inputType}
         value={inputValue}
         onChange={onChange}
@@ -16,4 +17,6 @@ export default function LabeledInput({
       />
     </div>
   );
-}
+};
+
+export default LabeledInput;
