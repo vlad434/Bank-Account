@@ -1,41 +1,35 @@
 🏦 Bank Account
+Bank Account is a React-based application developed as a hands-on project to practice Redux. It simulates essential banking operations such as depositing, withdrawing, requesting loans, and resetting the account balance. The project follows a modular and scalable architecture, emphasizing clean separation of business logic from UI, and aligns with industry best practices for state management.
 
-Bank Account is a project built with the purpose of learning and deepening my understanding of Redux and Redux Toolkit. The app simulates basic bank account operations (such as depositing, withdrawing, taking a loan and resetting balance) and is structured in a modular, scalable way to apply best practices in state management with React.
+🎯 Objectives
+Gain a deep understanding of core Redux concepts
 
-🎯 Goals
+Practice creating slices, actions, and reducers
 
-Understand the core concepts of Redux
+Maintain a clear separation between UI components and business logic
 
-Learn how to simplify state management using Redux Toolkit
+Work with selectors, middleware, and async operations using thunks
 
-Practice writing reducers, actions, and slices
+Build a scalable and maintainable React/Redux application structure
 
-Keep business logic separated from UI components
-
-Get hands-on experience with selectors and middleware
-
-Async operations ( using thunks )
-
-🔧  Tech Stack
-
-Vite
-
-React
+🔧 Tech Stack
+React (with Hooks)
 
 Redux
 
-Redux Toolkit
+JavaScript (ES6)
 
-JavaScript ES6
+Vite (for fast development build)
 
-🚀  Features
+🚀 Features
+💰 Deposit money into the account
 
-Deposit money into the account
+🏧 Withdraw funds
 
-Withdraw money from the account
+💳 Request and repay a loan
 
-Request a loan
+🔄 Reset the account balance
 
-Reset the account balance
+📊 Display current account balance in real time
 
-Display current balance
+⏳ Handle async logic for currency conversion and other operations
