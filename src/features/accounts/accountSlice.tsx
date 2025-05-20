@@ -42,7 +42,7 @@ export function deposit(amount, currency) {
   if (currency === "USD") return { type: "account/deposit", payload: amount };
 
   //middleware function
-  return async function (dispatch, getState) {
+  return async function (dispatch) {
     dispatch({ type: "account/convertingCurrency" });
     //API Call
     const res = await fetch(
