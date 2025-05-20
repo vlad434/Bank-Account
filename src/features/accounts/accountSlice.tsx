@@ -3,26 +3,48 @@ const initialStateAccount = {
   loan: 0,
   loanPurpose: "",
   isLoading: false,
+  depositAmount: "",
+  withdrawalAmount: "",
+  loanAmount: "",
+  loanPurposeInput: "",
+  currency: "USD",
 };
 
 export default function accountReducer(state = initialStateAccount, action) {
   switch (action.type) {
+    case "account/setDepositAmount":
+      return { ...state, depositAmount: action.payload };
+    case "account/setWithdrawalAmount":
+      return { ...state, withdrawalAmount: action.payload };
+    case "account/setLoanAmount":
+      return { ...state, loanAmount: action.payload };
+    case "account/setLoanPurposeInput":
+      return { ...state, loanPurposeInput: action.payload };
+    case "account/setCurrency":
+      return { ...state, currency: action.payload };
     case "account/deposit":
       return {
         ...state,
         balance: state.balance + action.payload,
         isLoading: false,
+        depositAmount: "",
+        currency: "USD",
       };
     case "account/withdraw":
-      return { ...state, balance: state.balance - action.payload };
+      return {
+        ...state,
+        balance: state.balance - action.payload,
+        withdrawalAmount: "",
+      };
     case "account/requestLoan":
       if (state.loan > 0) return state;
-      //Later
       return {
         ...state,
         loan: action.payload.amount,
         loanPurpose: action.payload.purpose,
         balance: state.balance + action.payload.amount,
+        loanAmount: "",
+        loanPurposeInput: "",
       };
     case "account/payLoan":
       return {
@@ -38,21 +60,36 @@ export default function accountReducer(state = initialStateAccount, action) {
   }
 }
 
+export function setDepositAmount(amount) {
+  return { type: "account/setDepositAmount", payload: amount };
+}
+
+export function setWithdrawalAmount(amount) {
+  return { type: "account/setWithdrawalAmount", payload: amount };
+}
+
+export function setLoanAmount(amount) {
+  return { type: "account/setLoanAmount", payload: amount };
+}
+
+export function setLoanPurposeInput(purpose) {
+  return { type: "account/setLoanPurposeInput", payload: purpose };
+}
+
+export function setCurrency(currency) {
+  return { type: "account/setCurrency", payload: currency };
+}
+
 export function deposit(amount, currency) {
   if (currency === "USD") return { type: "account/deposit", payload: amount };
 
-  //middleware function
   return async function (dispatch) {
     dispatch({ type: "account/convertingCurrency" });
-    //API Call
     const res = await fetch(
-      `https://api.frankfurter.dev/v1/latest?amount=${amount}&from=${currency}&to=USD`
+      `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`
     );
-
     const data = await res.json();
     const converted = data.rates.USD;
-
-    //return action
     dispatch({ type: "account/deposit", payload: converted });
   };
 }
@@ -64,10 +101,7 @@ export function withdraw(amount) {
 export function requestLoan(amount, purpose) {
   return {
     type: "account/requestLoan",
-    payload: {
-      amount,
-      purpose,
-    },
+    payload: { amount, purpose },
   };
 }
 

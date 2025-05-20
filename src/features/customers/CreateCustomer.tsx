@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createCustomer } from "./customerSlice";
+import LabeledInput from "../../components/LabeledInput";
 
 function Customer() {
   const [fullName, setFullName] = useState("");
@@ -17,20 +18,21 @@ function Customer() {
     <div>
       <h2>Create new customer</h2>
       <div className="inputs">
-        <div>
-          <label>Customer full name</label>
-          <input
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>National ID</label>
-          <input
-            value={nationalId}
-            onChange={(e) => setNationalId(e.target.value)}
-          />
-        </div>
+        <LabeledInput
+          label={"Customer full name"}
+          inputValue={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+          placeholder={"Enter customer name"}
+        />
+
+        <LabeledInput
+          label={"National ID"}
+          inputType={"number"}
+          inputValue={nationalId}
+          onChange={(e) => setNationalId(e.target.value)}
+          placeholder={"Enter customer national ID"}
+        />
+
         <button onClick={handleClick}>Create new customer</button>
       </div>
     </div>
