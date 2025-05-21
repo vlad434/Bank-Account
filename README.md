@@ -24,6 +24,7 @@ JavaScript (ES6)
 Vite (for fast development build)
 
 🚀 Features
+
 💰 Deposit money into the account
 
 🏧 Withdraw funds
